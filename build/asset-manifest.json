@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e5fccc49.chunk.css",
+    "main.js": "/static/js/main.2ad62ce2.chunk.js",
+    "main.js.map": "/static/js/main.2ad62ce2.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.9b628f1e.js",
+    "runtime~main.js.map": "/static/js/runtime~main.9b628f1e.js.map",
+    "static/js/2.95eb2327.chunk.js": "/static/js/2.95eb2327.chunk.js",
+    "static/js/2.95eb2327.chunk.js.map": "/static/js/2.95eb2327.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.16d338bc88ecf98b9bd8079c373f5df8.js": "/precache-manifest.16d338bc88ecf98b9bd8079c373f5df8.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.e5fccc49.chunk.css.map": "/static/css/main.e5fccc49.chunk.css.map",
+    "static/media/App.css": "/static/media/room-2.052c7681.jpeg",
+    "static/media/logo.svg": "/static/media/logo.9f0cccc1.svg"
+  }
+}
