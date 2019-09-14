@@ -39,7 +39,7 @@ class RoomProvider extends Component {
             loading: false,
             price: maxPrice,
             maxPrice,
-            size: maxSize
+            maxSize
         })
     }
 
@@ -94,6 +94,9 @@ class RoomProvider extends Component {
         //filter by price
         // if your price is less than range value, then rooms will be rendered
         tempRooms = tempRooms.filter(room => room.price <= price)
+
+        // filter by size
+        tempRooms = tempRooms.filter(room => room.size >= minSize && room.size < maxSize)
 
         // change state
         this.setState({
