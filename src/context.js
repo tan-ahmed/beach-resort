@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import items from "./data"
+// this is local data
+// import items from "./data"
+import Client from "./Contentful"
+
 
 const RoomContext = React.createContext();
 
@@ -21,26 +24,61 @@ class RoomProvider extends Component {
         pets: false
     }
 
-    // getData
-    componentDidMount() {
-        let rooms = this.formatData(items)
-        // console.log(rooms);
-        // add to this array if its featured
-        let featuredRooms = rooms.filter(room => room.featured === true)
-        let maxPrice = Math.max(...rooms.map(item=> item.price));
-        let maxSize = Math.max(...rooms.map(item=> item.size));
+    getData = async () => {
+        try {
+            let response = await Client.getEntries({
+                content_type: "beachResortRoom",
+                // order: "sys.createdAt"
+                order: "-fields.price" //fields from json data
+            })
+            let rooms = this.formatData(response.items)
+            // console.log(rooms);
+            // add to this array if its featured
+            let featuredRooms = rooms.filter(room => room.featured === true)
+            let maxPrice = Math.max(...rooms.map(item => item.price));
+            let maxSize = Math.max(...rooms.map(item => item.size));
 
-        
-        // getting the formatted data and storing in state
-        this.setState({ 
-            rooms, 
-            featuredRooms, 
-            sortedRooms: rooms, 
-            loading: false,
-            price: maxPrice,
-            maxPrice,
-            maxSize
-        })
+
+            // getting the formatted data and storing in state
+            this.setState({
+                rooms,
+                featuredRooms,
+                sortedRooms: rooms,
+                loading: false,
+                price: maxPrice,
+                maxPrice,
+                maxSize
+            })
+        } catch (error){
+            console.log(error)
+        }
+    }
+
+    //   .then((response) => console.log(response.items))
+    // .catch (console.error)
+
+    componentDidMount() {
+        this.getData()
+
+        // ** this is local data **
+        // let rooms = this.formatData(items)
+        // // console.log(rooms);
+        // // add to this array if its featured
+        // let featuredRooms = rooms.filter(room => room.featured === true)
+        // let maxPrice = Math.max(...rooms.map(item => item.price));
+        // let maxSize = Math.max(...rooms.map(item => item.size));
+
+
+        // // getting the formatted data and storing in state
+        // this.setState({
+        //     rooms,
+        //     featuredRooms,
+        //     sortedRooms: rooms,
+        //     loading: false,
+        //     price: maxPrice,
+        //     maxPrice,
+        //     maxSize
+        // })
     }
 
     formatData(items) {
